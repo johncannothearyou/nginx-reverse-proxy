@@ -15,7 +15,6 @@ if [ ! -d "/etc/letsencrypt/live/johncannothearyou.com" ]; then
                         --email $email \
                         --domain $domain \
                         --domain www.$domain \
-                        --domain immich.$domain
 fi
 
 if [ ! -d "/etc/letsencrypt/live/immich.johncannothearyou.com" ]; then
@@ -29,7 +28,6 @@ if [ ! -d "/etc/letsencrypt/live/immich.johncannothearyou.com" ]; then
                         --email $email \
                         --domain $domain \
                         --domain www.$domain \
-                        --domain immich.$domain
 fi
 
 # Add a cron job to renew the certificate
