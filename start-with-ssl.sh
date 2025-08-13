@@ -1,25 +1,12 @@
 #!/bin/sh
 
-# Stop nginx if it's running
-nginx -s stop || echo "Nginx is not running, proceeding with certificate generation."
-
 # Check if certificates exist, if not, run the init script
-if [ ! -d "/etc/letsencrypt/live/johncannothearyou.com" ]; then
+if [ ! -d "/etc/letsencrypt/live" ]; then
     domain="johncannothearyou.com"
     email="johncannothearyou@gmail.com"
 
-    # Get the certificate
-    certbot certonly --standalone \
-                        --agree-tos \
-                        --non-interactive \
-                        --email $email \
-                        --domain $domain \
-                        --domain www.$domain
-fi
-
-if [ ! -d "/etc/letsencrypt/live/immich.johncannothearyou.com" ]; then
-    domain="immich.johncannothearyou.com"
-    email="immich.johncannothearyou@gmail.com"
+    # Stop nginx if it's running
+    nginx -s stop || echo "Nginx is not running, proceeding with certificate generation."
 
     # Get the certificate
     certbot certonly --standalone \
@@ -28,6 +15,8 @@ if [ ! -d "/etc/letsencrypt/live/immich.johncannothearyou.com" ]; then
                         --email $email \
                         --domain $domain \
                         --domain www.$domain
+else 
+    certbot renew
 fi
 
 # Add a cron job to renew the certificate
