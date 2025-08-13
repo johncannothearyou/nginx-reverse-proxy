@@ -14,7 +14,8 @@ if [ ! -d "/etc/letsencrypt/live" ]; then
                         --non-interactive \
                         --email $email \
                         --domain $domain \
-                        --domain www.$domain
+                        --domain www.$domain \
+                        --domain immich.$domain
 else 
     certbot renew
 fi
