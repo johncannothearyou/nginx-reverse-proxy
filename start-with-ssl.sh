@@ -10,11 +10,11 @@ if [ ! -d "/etc/letsencrypt/live" ]; then
 
     # Get the certificate
     certbot certonly --standalone \
-        --agree-tos \
-        --non-interactive \
-        --email $email \
-        --domain $domain \
-        --domain www.$domain
+                        --agree-tos \
+                        --non-interactive \
+                        --email $email \
+                        --domain $domain \
+                        --domain www.$domain
 else 
     certbot renew
 fi
